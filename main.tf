@@ -26,15 +26,15 @@ resource "aws_vpc" "my-vpc" {
 }
 
 
-#Private Subnet
+# #Private Subnet
 
-resource "aws_subnet" "private-subnet" {
-  cidr_block = "10.0.1.0/24"
-  vpc_id     = aws_vpc.my-vpc.id
-  tags = {
-    Name = "private-subnet"
-  }
-}
+# resource "aws_subnet" "private-subnet" {
+#   cidr_block = "10.0.1.0/24"
+#   vpc_id     = aws_vpc.my-vpc.id
+#   tags = {
+#     Name = "private-subnet"
+#   }
+# }
 
 #Public Subnet
 
