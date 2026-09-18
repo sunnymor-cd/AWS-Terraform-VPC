@@ -1,11 +1,11 @@
 terraform {
   required_providers {
     aws = {
-      source = "hashicorp/aws"
+      source  = "hashicorp/aws"
       version = "5.72.1"
     }
     random = {
-      source = "hashicorp/random"
+      source  = "hashicorp/random"
       version = "3.6.3"
     }
   }
@@ -30,7 +30,7 @@ resource "aws_vpc" "my-vpc" {
 
 resource "aws_subnet" "private-subnet" {
   cidr_block = "10.0.1.0/24"
-  vpc_id = aws_vpc.my-vpc.id
+  vpc_id     = aws_vpc.my-vpc.id
   tags = {
     Name = "private-subnet"
   }
@@ -40,7 +40,7 @@ resource "aws_subnet" "private-subnet" {
 
 resource "aws_subnet" "public-subnet" {
   cidr_block = "10.0.2.0/24"
-  vpc_id = aws_vpc.my-vpc.id
+  vpc_id     = aws_vpc.my-vpc.id
   tags = {
     Name = "public-subnet"
   }
@@ -68,15 +68,15 @@ resource "aws_route_table" "my-routetable" {
 
 resource "aws_route_table_association" "public-sub" {
   route_table_id = aws_route_table.my-routetable.id
-  subnet_id = aws_subnet.public-subnet.id
+  subnet_id      = aws_subnet.public-subnet.id
 }
 
 #AWS EC2
 
 resource "aws_instance" "server-pub-sub" {
-  ami = "ami-0866a3c8686eaeeba"
+  ami           = "ami-0866a3c8686eaeeba"
   instance_type = "t2.micro"
-  subnet_id = aws_subnet.public-subnet.id
+  subnet_id     = aws_subnet.public-subnet.id
 
   tags = {
     Name = "server-pub-sub"
